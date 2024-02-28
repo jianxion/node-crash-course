@@ -35,7 +35,7 @@ const server = http.createServer((req, res) => {
 //       path += 'about.html';
 //       res.statusCode = 200;
 //       break;
-//     case '/about-us':
+//     case '/about-us': // relocate to about page
 //       res.statusCode = 301;
 //       res.setHeader('Location', '/about');
 //       res.end();
