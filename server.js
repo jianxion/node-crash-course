@@ -1,6 +1,6 @@
 const http = require('http');
 const fs = require('fs');
-const _ = require('lodash');
+const _ = require('lodash'); // use npm install to install all dependencies required in package.json
 
 const server = http.createServer((req, res) => {
 
@@ -8,11 +8,11 @@ const server = http.createServer((req, res) => {
   const num = _.random(0, 20);
   console.log(num);
 
-  const greet = _.once(() => {
+  const greet = _.once(() => { // only run the function once
     console.log('hello');
   });
-  greet();
-  greet();
+  greet(); 
+  greet(); // this will not run because _.once(() => {})
 
   // set header content type
   res.setHeader('Content-Type', 'text/html');
