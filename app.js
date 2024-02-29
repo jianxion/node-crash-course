@@ -19,8 +19,10 @@ app.get('/', (req, res) => {
   res.render('index', { title: 'Home', blogs });
 });
 
-app.get('/about', (req, res) => {
-  res.render('about', { title: 'About' });
+app.get('/about', (req, res) => { // '/about' is the request (link), 'about' is the view to send back
+  res.render('about', { title: 'About' }); // pass this title 'About' variable to the ejs file. 
+                                          // to print it in the ejs, we need <%= title %> .
+                                          // view allows to write javascript in html (ejs) files.
 });
 
 app.get('/blogs/create', (req, res) => {
