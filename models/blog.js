@@ -16,5 +16,5 @@ const blogSchema = new Schema({
   },
 }, { timestamps: true });
 
-const Blog = mongoose.model('Blog', blogSchema);
+const Blog = mongoose.model('Blog', blogSchema); // use 'Blog' to Automatically look for blogs (pluralized) in the database I created on mongodb
 module.exports = Blog;
