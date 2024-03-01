@@ -10,7 +10,10 @@ app.listen(3000);
 // register view engine
 app.set('view engine', 'ejs');
 
-// middleware & static files
+// middleware & static files 
+// alow access to files in the public folder
+// then we can create a link in html to the css file, just call styles.css, no need to write
+// ./public/styles.css
 app.use(express.static('public'));
 
 app.use((req, res, next) => {
