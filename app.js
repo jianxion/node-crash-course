@@ -7,7 +7,7 @@ const Blog = require('./models/blog');
 const app = express();
 
 // connect to mongodb & listen for requests
-const dbURI = "mongodb+srv://netninja:test1234@net-ninja-tuts-del96.mongodb.net/node-tuts";
+const dbURI = "mongodb+srv://jianxion:Aite@20171819@mycluster1.lj3mogl.mongodb.net/mydatabse1?retryWrites=true&w=majority&appName=mycluster1";
 
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(result => app.listen(3000))
@@ -18,7 +18,7 @@ app.set('view engine', 'ejs');
 
 // middleware & static files
 app.use(express.static('public'));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // allow access to req.body
 app.use(morgan('dev'));
 app.use((req, res, next) => {
   res.locals.path = req.path;
@@ -54,8 +54,8 @@ app.post('/blogs', (req, res) => {
   const blog = new Blog(req.body);
 
   blog.save()
-    .then(result => {
-      res.redirect('/blogs');
+    .then(result => { // result is not used
+      res.redirect('/blogs'); // after user submits the blog, redirect to the blog list page.
     })
     .catch(err => {
       console.log(err);
@@ -66,14 +66,14 @@ app.get('/blogs/:id', (req, res) => {
   const id = req.params.id;
   Blog.findById(id)
     .then(result => {
-      res.render('details', { blog: result, title: 'Blog Details' });
+      res.render('details', { blog: result, title: 'Blog Details' }); // give ejs file access to the blog object
     })
     .catch(err => {
       console.log(err);
     });
 });
 
-app.delete('/blogs/:id', (req, res) => {
+app.delete('/blogs/:id', (req, res) => { // need a : column before id
   const id = req.params.id;
   
   Blog.findByIdAndDelete(id)
